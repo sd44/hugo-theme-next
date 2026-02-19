@@ -120,13 +120,13 @@ waline:
 waline3:
   js:
     name: waline
-    version: 3.5.7
+    version: 3.12.2
     file: dist/waline.js
     alias: "@waline/client"
 
   css:
     name: waline
-    version: 3.5.7
+    version: 3.12.2
     file: dist/waline.css
     alias: "@waline/client"
 
@@ -220,13 +220,13 @@ plugins:
     js:
       - name: pageview
         alias_name: waline
-        version: 3.5.7
+        version: 3.12.2
         file: dist/pageview.js
         alias: "@waline/client" 
 
       - name: comment
         alias_name: waline
-        version: 3.5.7
+        version: 3.12.2
         file: dist/comment.js
         alias: "@waline/client"
   # 音乐播放器
