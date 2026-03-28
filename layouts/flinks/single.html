@@ -9,10 +9,15 @@
 <div class="flinks-body">
 <div class="flinks-lists">
   {{ $flinksData := "" }}
-  {{ if .IsTranslated }}
-    {{ $flinksData = index .Site.Data.flinks .Lang }}
-  {{ else }}
-    {{ $flinksData = .Site.Data.flinks }}
+  {{ if .Site.Data.flinks }}
+    {{ if reflect.IsMap .Site.Data.flinks }}
+      {{ $flinksData = index .Site.Data.flinks .Lang }}
+      {{ if not $flinksData }}
+        {{ $flinksData = index .Site.Data.flinks "zh-cn" }}
+      {{ end }}
+    {{ else }}
+      {{ $flinksData = .Site.Data.flinks }}
+    {{ end }}
   {{ end }}
   {{ range $flinksData }}
   <div class="flinks-list">
