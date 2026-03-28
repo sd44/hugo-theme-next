@@ -51,7 +51,8 @@ class LocalSearch {
   // Merge hits into slices
   mergeIntoSlice(start, end, index) {
     let item = index[0];
-    let { position, word } = item;
+    let position = item.position;
+    let word = item.word;
     const hits = [];
     const count = new Set();
     while (position + word.length <= end && index.length !== 0) {
