@@ -9,14 +9,14 @@
 <div class="flinks-body">
 <div class="flinks-lists">
   {{ $flinksData := "" }}
-  {{ if .Site.Data.flinks }}
-    {{ if reflect.IsMap .Site.Data.flinks }}
-      {{ $flinksData = index .Site.Data.flinks .Lang }}
+  {{ if hugo.Data.flinks }}
+    {{ if reflect.IsMap hugo.Data.flinks }}
+      {{ $flinksData = index hugo.Data.flinks .Lang }}
       {{ if not $flinksData }}
-        {{ $flinksData = index .Site.Data.flinks "zh-cn" }}
+        {{ $flinksData = index hugo.Data.flinks "zh-cn" }}
       {{ end }}
     {{ else }}
-      {{ $flinksData = .Site.Data.flinks }}
+      {{ $flinksData = hugo.Data.flinks }}
     {{ end }}
   {{ end }}
   {{ range $flinksData }}
