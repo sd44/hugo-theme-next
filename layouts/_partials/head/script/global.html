@@ -114,8 +114,10 @@
 {{ end }}
 
 {{ $nextjs = $nextjs | resources.Concat "js/main.js"}}
-{{ if hugo.IsProduction }}
+{{/* 禁用压缩以避免变量命名冲突问题
+    https://github.com/gohugoio/hugo/issues/11207 */}}
+{{/* if hugo.IsProduction }}
 {{ $nextjs = $nextjs | minify }}
-{{ end }}
+{{ end */}}
 {{ $unixSrc := partial "_funs/add_unix_param.html" $nextjs.RelPermalink }}
 <script type="text/javascript" src="{{ $unixSrc }}" defer></script>
