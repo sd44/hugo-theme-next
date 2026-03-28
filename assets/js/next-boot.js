@@ -23,7 +23,8 @@ NexT.boot.registerEvents = function() {
   // NexT.utils.registerCanIUseTag();
   NexT.utils.registerToolButtons();
   // Register comment's components
-  NexT.plugins.register();
+  // Delayed to DOMContentLoaded to ensure all plugins are loaded
+  // NexT.plugins.register();
 
   // Register comment counter click event
   const commentCnt = document.querySelector('#comments-count');
@@ -119,4 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
   NexT.boot.registerEvents();
   NexT.boot.motion();
   NexT.boot.refresh();
+  // Register all plugins after all scripts loaded
+  NexT.plugins.register();
 });

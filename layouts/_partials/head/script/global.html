@@ -1,5 +1,5 @@
 {{/* Loading all page need scripts */}}
-{{ $jsRes := .Site.Data.resources.js }}
+{{ $jsRes := hugo.Data.resources.js }}
 {{ $vendor := .Site.Params.vendors.plugins }}
 {{ $router := .Scratch.Get "router" }}
 {{ range $jsRes }} 
@@ -13,7 +13,20 @@
 {{ $config := resources.Get "js/config.js" }}
 {{ $utils := resources.Get "js/utils.js" }}
 {{ $boot := resources.Get "js/next-boot.js" }}
-{{ $nextjs := slice $config $utils $boot }}
+
+{{/* Search engine scripts (must be loaded before boot) */}}
+{{ $nextjs := slice $config $utils }}
+
+{{ if .Site.Params.localSearch.enable }}
+{{ $search := resources.Get "js/3rd/search/local.js" }}
+{{ $nextjs = $nextjs | append $search }}
+{{ end }}
+{{ if .Site.Params.algoliaSearch.enable }}
+{{ $search := resources.Get "js/3rd/search/algolia.js" }}
+{{ $nextjs = $nextjs | append $search }}
+{{ end }}
+
+{{ $nextjs = $nextjs | append $boot }}
 
 {{/* Animation scripts */}}
 {{ if .Site.Params.motion.enable }}
@@ -90,16 +103,6 @@
 {{ if isset .Site.Params "twikoo" }}
 {{ $twikoojs := resources.Get "js/3rd/comments/twikoo.js" }}
 {{ $nextjs = $nextjs | append $twikoojs }}
-{{ end }}
-
-{{/* Search engin scripts */}}
-{{ if .Site.Params.localSearch.enable }}
-{{ $search := resources.Get "js/3rd/search/local.js" }}
-{{ $nextjs = $nextjs | append $search }}
-{{ end }}
-{{ if .Site.Params.algoliaSearch.enable }}
-{{ $search := resources.Get "js/3rd/search/algolia.js" }}
-{{ $nextjs = $nextjs | append $search }}
 {{ end }}
 
 {{/* Other not useful scripts, eg: 51la widget, translate */}}
