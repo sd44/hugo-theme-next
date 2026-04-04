@@ -783,9 +783,8 @@ params:
 
 
   # ---------------------------------------------------------------
-  # TODO
-  # 字体设置（暂时未实现）
-  # Font Settings (not implemented by now)
+  # 字体设置
+  # Font Settings
   # ---------------------------------------------------------------
   # Find fonts on Google Fonts (https://fonts.google.com)
   # All fonts set here will have the following styles:
@@ -800,7 +799,11 @@ params:
     enable: true
 
     # Uri of fonts host, e.g. https://fonts.googleapis.com (Default).
-    host:
+    # 国内推荐使用以下字体镜像服务：
+    # - https://fonts.font.im (字体镜像，国内访问速度快)
+    # - https://fonts.googleapis.com (Google Fonts 官方服务)
+    # - https://fonts.loli.net (360 字体镜像)
+    host: https://fonts.font.im
 
     # Font options:
     # `external: true` will load this font family from `host` above.
@@ -834,6 +837,14 @@ params:
     codes:
       external: true
       family:
+
+    # Font settings for Chinese characters (optional).
+    # If not specified, will fallback to 'PingFang SC', 'Microsoft YaHei' by default.
+    # You can specify multiple fonts separated by comma.
+    chinese:
+      external: true
+      family: "Noto Sans SC, Noto Serif SC"
+      size:
 
 
   # ---------------------------------------------------------------

@@ -1,0 +1,71 @@
+{{/* Load web fonts from configurable font host (default: Chinese CDN mirror) */}}
+{{- with .Site.Params.font }}
+{{- if .enable }}
+{{- $fontHost := default "https://fonts.font.im" .host }}
+{{- $fonts := slice }}
+
+{{/* Collect fonts that need external loading */}}
+{{- with .global }}
+  {{- if and .external .family }}
+    {{- $fonts = $fonts | append .family }}
+  {{- end }}
+{{- end }}
+
+{{- with .title }}
+  {{- if and .external .family }}
+    {{- $fonts = $fonts | append .family }}
+  {{- end }}
+{{- end }}
+
+{{- with .headings }}
+  {{- if and .external .family }}
+    {{- $fonts = $fonts | append .family }}
+  {{- end }}
+{{- end }}
+
+{{- with .posts }}
+  {{- if and .external .family }}
+    {{- $fonts = $fonts | append .family }}
+  {{- end }}
+{{- end }}
+
+{{- with .codes }}
+  {{- if and .external .family }}
+    {{- $fonts = $fonts | append .family }}
+  {{- end }}
+{{- end }}
+
+{{/* Load default Chinese fonts if configured */}}
+{{- with .Site.Params.font.chinese }}
+  {{- if and .external .family }}
+    {{- $fonts = $fonts | append .family }}
+  {{- end }}
+{{- end }}
+
+{{/* Remove duplicates */}}
+{{- $uniqueFonts := slice }}
+{{- range $fonts }}
+  {{- if not (in $uniqueFonts .) }}
+    {{- $uniqueFonts = $uniqueFonts | append . }}
+  {{- end }}
+{{- end }}
+
+{{- if gt (len $uniqueFonts) 0 }}
+{{- $fontFamilies := "" }}
+{{- range $idx, $font := $uniqueFonts }}
+  {{- if gt $idx 0 }}
+    {{- $fontFamilies = printf "%s|" $fontFamilies }}
+  {{- end }}
+  {{- $fontFamilies = printf "%s%s" $fontFamilies (replace $font " " "+") }}
+{{- end }}
+
+{{- $fontUrl := printf "%s/css?family=%s&display=swap" $fontHost $fontFamilies }}
+<link rel="preconnect" href="{{ $fontHost }}" crossorigin>
+<link rel="preload" href="{{ $fontUrl }}" as="style">
+<link rel="stylesheet" href="{{ $fontUrl }}" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="{{ $fontUrl }}">
+</noscript>
+{{- end }}
+{{- end }}
+{{- end }}

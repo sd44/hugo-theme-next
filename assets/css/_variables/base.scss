@@ -83,14 +83,31 @@ $theme-color-dark             : $theme_color_dark;
 // Font, line-height, and elements colors.
 // --------------------------------------------------
 @function get-font-family($config) {
-  //TODO find the way daymatic variable
-  $custom-family: $config;
-  //$custom-family : hexo-config('font.' + $config + '.family');
-  @return if(type-of($custom-family) == string, unquote($custom-family), null);
+  // Map config name to corresponding SCSS variable
+  $family-map: (
+    'chinese': $font_chinese_family,
+    'global': $font_global_family,
+    'title': $font_title_family,
+    'headings': $font_headings_family,
+    'posts': $font_posts_family,
+    'codes': $font_codes_family
+  );
+  
+  $family: map-get($family-map, $config);
+  
+  // Return the font family if it's a non-empty string
+  @if type-of($family) == string and $family != '' {
+    @return unquote($family);
+  }
+  
+  @return null;
 }
 
 // Font families.
 $font-family-chinese      : 'PingFang SC', 'Microsoft YaHei';
+@if get-font-family('chinese') {
+  $font-family-chinese    : join(get-font-family('chinese'), $font-family-chinese);
+}
 
 $font-family-base         : $font-family-chinese, sans-serif;
 @if get-font-family('global') {

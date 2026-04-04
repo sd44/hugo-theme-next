@@ -3,6 +3,5 @@
     "allow": [
       "Bash(git rebase *)"
     ]
-  },
-  "$version": 3
+  }
 }

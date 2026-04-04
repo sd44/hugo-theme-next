@@ -37,6 +37,12 @@ $font_enable                : {{ $P.font.enable }};
 $font_global_size           : {{ default $P.font.global.size 1 }};
 $font_headings_size         : {{ default $P.font.headings.size 1.625 }};
 $font_title_size            : {{ default $P.font.title.size 1.375 }};
+$font_global_family         : {{ with $P.font.global.family }}"{{ . }}"{{ else }}""{{ end }};
+$font_title_family          : {{ with $P.font.title.family }}"{{ . }}"{{ else }}""{{ end }};
+$font_headings_family       : {{ with $P.font.headings.family }}"{{ . }}"{{ else }}""{{ end }};
+$font_posts_family          : {{ with $P.font.posts.family }}"{{ . }}"{{ else }}""{{ end }};
+$font_codes_family          : {{ with $P.font.codes.family }}"{{ . }}"{{ else }}""{{ end }};
+$font_chinese_family        : {{ with $P.font.chinese.family }}"{{ . }}"{{ else }}""{{ end }};
 
 // Code & Code blocks
 // TODO find the configure variable
