@@ -89,6 +89,11 @@ analytics:
   busuanzi: https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
   cloudflare: https://static.cloudflareinsights.com/beacon.min.js
 
+# 广告组件
+# Ad component
+ads:
+  googlead: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=
+
 # 文章分享
 # Share
 share:
@@ -115,13 +120,13 @@ waline:
 waline3:
   js:
     name: waline
-    version: 3.5.7
+    version: 3.12.2
     file: dist/waline.js
     alias: "@waline/client"
 
   css:
     name: waline
-    version: 3.5.7
+    version: 3.12.2
     file: dist/waline.css
     alias: "@waline/client"
 
@@ -222,13 +227,13 @@ plugins:
     js:
       - name: pageview
         alias_name: waline
-        version: 3.5.7
+        version: 3.12.2
         file: dist/pageview.js
         alias: "@waline/client" 
 
       - name: comment
         alias_name: waline
-        version: 3.5.7
+        version: 3.12.2
         file: dist/comment.js
         alias: "@waline/client"
   # 音乐播放器
