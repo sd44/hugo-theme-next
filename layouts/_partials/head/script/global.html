@@ -110,6 +110,12 @@
   {{ end }}
 {{ end }}
 
+{{/* Pangu script for Chinese-English spacing */}}
+{{ if .Site.Params.pangu }}
+{{ $pangujs := resources.Get "js/3rd/plugins/pangu.js" }}
+{{ $nextjs = $nextjs | append $pangujs }}
+{{ end }}
+
 {{ $nextjs = $nextjs | resources.Concat "js/main.js"}}
 {{ if hugo.IsProduction }}
 {{ $nextjs = $nextjs | minify }}
