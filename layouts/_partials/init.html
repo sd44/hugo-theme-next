@@ -186,6 +186,14 @@
 {{ $config = merge $config (dict "lawidget" $lawidget) }}
 {{ end }}
 
+{{/* Pangu plugin for Chinese-English spacing */}}
+{{ if .Site.Params.pangu }}
+{{ $pangu := dict
+  "js" hugo.Data.resources.plugins.pangu.js
+}}
+{{ $config = merge $config (dict "pangu" $pangu) }}
+{{ end }}
+
 {{ $globalVars.Set "config" $config }}
 
 {{ with .Site.Params.customFilePath }}
