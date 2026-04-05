@@ -1,0 +1,4 @@
+<!-- Google AdSense -->
+{{ if and .Site.Params.ads (isset .Site.Params.ads "googleadid") }}
+  {{ partial "_thirdparty/ads/googlead.html" . }}
+{{ end }}

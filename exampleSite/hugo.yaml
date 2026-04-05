@@ -289,8 +289,12 @@ params:
     medium: /imgs/icons/favicon_32_32_next.png
     appleTouchIcon: /imgs/icons/apple_touch_icon_next.png
 
-  # 自定义 Logo （目前只支持 Mist 页面模式）
-  # Custom Logo (Warning: Only support scheme Mist)
+  # 自定义 Logo （目前只支持 Muse,Gemini,Pisces 页面模式） 
+  # Muse模式下，图片是在站点标题上面
+  # Gemini和Pisces模式下，图片是在站点标题下面
+  # Custom Logo (Warning: Only support scheme Muse,Gemini,Pisces)
+  # Muse mode: Logo is above site title
+  # Gemini and Pisces mode: Logo is below site title
   customLogo: #/imgs/hugo_next_logo.png
 
   # 用户自定义文件配置
@@ -524,7 +528,7 @@ params:
       icp: 粤ICP备 18047355-1 号
       # 公安网备的省份简称
       provinceAbbr: 沪
-      # 公安网备案号
+      # 公安网备号
       gonganNum: 31011402009770
 
     # 站点支持供应商列表
@@ -1122,6 +1126,22 @@ params:
     busuanzi:
       visitorsIcon: fa fa-user
       viewsIcon: fa fa-eye
+    # Umami 统计
+    # Umami Analytics
+    # More information: https://umami.is/
+    umami:
+      enable: false
+      websiteId: '<your-umami-website-id>'
+      scriptUrl: 'https://<your-umami-domain>/script.js'
+
+  # ---------------------------------------------------------------
+  # 广告服务
+  # Advertising Services
+  # ---------------------------------------------------------------
+  ads:
+    # Google AdSense
+    # For more information: https://ads.google.com
+    googleAdId: #<google_adsense_id>
 
   # ---------------------------------------------------------------
   # 内容搜索服务
